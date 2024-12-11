@@ -1,0 +1,4 @@
+F S   UID     PID    PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S  1002    3304    3286  0  80   0 -  3985 do_wai pts/0    00:00:00 bash
+0 S  1002   10720    3304  0  80   0 -  1514 do_wai pts/0    00:00:00 A3-ps_a_fichero
+4 R  1002   10721   10720  0  80   0 -  3844 -      pts/0    00:00:00 ps
