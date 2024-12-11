@@ -166,9 +166,21 @@ void RedireccionarYEjecutar(char* comando, bool sinPipe)
 
     // Parte 2: Ejecución del mandato en un nuevo proceso
     if(sinPipe){
-        if (parts[0]!=nullptr && strcmp(parts[0], "cd") == 0) // Comprobamos si es cd
+        if (parts[0]!=nullptr && strcmp(parts[0], "cd") == 0) // Comprueba si es cd
         {
-            chdir(parts[1]);
+            string home = "/home/" + string(getenv("USER")); // Guarda la ruta de la carpeta personal
+            if(parts[1] == nullptr)
+            {
+                chdir(home.c_str()); // Si no pasamos ningún argumento se va a la carpeta personal
+                return;
+            }
+            string nDir = string(parts[1]); // Transforma el directorio al que nos vamos a cambiar a string
+            if(nDir.rfind("~", 0) == 0) // Busca que la ruta empiece por ~
+            { 
+                nDir.erase(0,1); // Elimina el primer caracter (~)
+                nDir = home + nDir;
+            }
+            chdir(nDir.c_str());
             return;
         }
     }
