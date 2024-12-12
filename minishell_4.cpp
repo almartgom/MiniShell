@@ -144,7 +144,8 @@ void ejecutar(char comando[])
 
         int pid2=fork(); // Crear hijo 2 (Ejecuta segundo comando)
 
-        switch(pid2){
+        switch(pid2)
+        {
             case -1: // Error al crear el hijo
                 perror("ERROR: no he podido crear un proceso con fork");
                 exit(2);
@@ -212,7 +213,8 @@ void RedireccionarYEjecutar(char* comando, bool sinPipe)
     case 0: // proceso hijo
         
 
-        if(f_out!=NULL){
+        if(f_out!=NULL)
+        {
             close(1); // cierra la salida estándar
             int fd;          
             if(noVaciarOut){
@@ -228,7 +230,8 @@ void RedireccionarYEjecutar(char* comando, bool sinPipe)
             }
         }
 
-        if(f_in!=NULL){
+        if(f_in!=NULL)
+        {
             close(0); // cierra la entrada estándar
             int fd = open(f_in, O_RDONLY); // abre el archivo como sólo lectura
             if ( fd == -1 ){
@@ -237,7 +240,8 @@ void RedireccionarYEjecutar(char* comando, bool sinPipe)
             }
         }
 
-        if(f_err!=NULL){
+        if(f_err!=NULL)
+        {
             close(2); // cierra la salida de error estándar
             int fd = open(f_err, O_WRONLY|O_CREAT|O_TRUNC, 0644); // abre el archivo como sólo lectura
             if ( fd == -1 ){
