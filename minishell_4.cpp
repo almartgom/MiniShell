@@ -226,7 +226,7 @@ void RedireccionarYEjecutar(char* comando, bool sinPipe)
             }
             if ( fd == -1 ){
                 perror("No puedo crear el archivo \n");
-            exit(2);
+                exit(2);
             }
         }
 
