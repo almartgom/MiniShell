@@ -90,6 +90,10 @@ int main(int argc, char *argv[])
 
 void ejecutar(char comando[])
 { // Ejecuta un comando
+    for(int i=0; comando[i]!='\0'; i++) // Busca si hay comentarios y los quita
+    {
+        if(comando[i] == '#') comando[i] = '\0';
+    }
     char** comandoPipeado;
     int nTuberias = trocear_linea(comando,"|",comandoPipeado);
     nTuberias --;
