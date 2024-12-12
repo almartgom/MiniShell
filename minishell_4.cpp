@@ -1,3 +1,4 @@
+// Importación de librerias de utilidad
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
@@ -15,12 +16,25 @@
 
 using namespace std;
 
+// Trocea un array de caracteres conforme a un o varios caracteres delimitadores
 int trocear_linea(char *str, const char *delim, char **&parts);
+
+// Ejecuta un comando
 void ejecutar(char comando[]);
+
+// Comprueba el estado del buffer y lee una linea por la entrada estándar
 void read(char str[], int tam);
+
+// Si encuentra ';' va llamando a la función ejecutar()
 void ejecutarVarios(char comandos[]);
+
+// Quita los espacios y tabulaciones del principio y final de una cadena
 char *strtrim(char *str);
+
+// Dada una cadena encuentra '<', '>', '>>' y '2>' para gestionar las redirecciones de salidas (de error y estándar) y entrada estándar
 bool getredir(char *str, char *&in, char *&out, char *&err);
+
+// Dado un comando redirrecciona sus salidas (de error y estándar) y entrada estándar y lo ejecuta
 void RedireccionarYEjecutar(char* comando, bool sinPipe);
 
 // Construye el prompt que muestra: [<usuario>@<host> <cwd>] $
@@ -29,7 +43,7 @@ string prompt();
 // Muestra un pequeño ASCII art
 void inicio();
 
-const int MAX_CARACTERES = 255;
+const int MAX_CARACTERES = 255; // Tamaño máximo a leer
 
 int main(int argc, char *argv[])
 {
