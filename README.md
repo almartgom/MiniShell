@@ -24,4 +24,4 @@ g++ minishell.cpp -o minishell
 ## Especficaciones
 * **Prompt**: En su versión interactiva incluye un prompt indicando el nombre de usuario, host y directorio de trabajo. El prompt muestra además el directorio /home/\<user> como `~`.
 
-![Imagen Prompt](https://imgur.com/a/Lf1LZWa)
+![Imagen Prompt](https://imgur.com/8hSru4P)
