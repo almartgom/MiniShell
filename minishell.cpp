@@ -166,7 +166,7 @@ void ejecutar(char comando[])
     }
     else
     {
-        RedireccionarYEjecutar(comando,true);
+        RedireccionarYEjecutar(comando,true); // Redirecciona y ejecuta (pero no habiendo pipe, es decir, puede ejecutar cd)
     }
 
 }
