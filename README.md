@@ -24,9 +24,12 @@ g++ minishell.cpp -o minishell
 ## Especficaciones
 * **Prompt**: En su versión interactiva incluye un prompt indicando el nombre de usuario, host y directorio de trabajo. El prompt muestra además el directorio /home/\<user> como `~`.
 
-![Imagen Prompt](https://imgur.com/8hSru4P)
+  [![Captura-de-pantalla-2024-12-13-164307.png](https://i.postimg.cc/4x3K8hh7/Captura-de-pantalla-2024-12-13-164307.png)](https://postimg.cc/4mrNyyPs)
 
 * **Comandos**: Admite la ejecución de comandos separados por espacios (El comando `cd` funciona correctamente como funciona en bash, dejarlo sin argumentos ejecutará `cd /home/<user>`).
 
-* **Guiones**: Admte la ejecución de guiones.
+* **Guiones**: Admite la ejecución de guiones.
+
+* **Redirección**: La entrada y salida de un comando se puede redirigir de la siguiente forma:
+    * sdfsd 
 

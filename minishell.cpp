@@ -1,3 +1,9 @@
+/**
+ *  AUTOR: Alejandro Martínez Gómiz
+ *  DESCRIPCIÓN: Trabajo de la asignatura Sistemas Operativos
+ *
+ */
+
 // Importación de librerias de utilidad
 #include <iostream>
 #include <cstdlib>
