@@ -210,7 +210,7 @@ void RedireccionarYEjecutar(char* comando, bool sinPipe)
     case -1:
         perror("Error al crear un proceso\n");
         break;
-    case 0: // proceso hijo
+    case 0: // Proceso hijo
         
 
         if(f_out!=NULL)
