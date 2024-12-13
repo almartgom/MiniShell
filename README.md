@@ -21,19 +21,25 @@ g++ minishell.cpp -o minishell
 ./minishell guion1.sh guion2.sh
 ```
 
-## Especficaciones
+## Especificaciones
 * **Prompt**: En su versión interactiva incluye un prompt indicando el nombre de usuario, host y directorio de trabajo. El prompt muestra además el directorio /home/\<user> como `~`.
 
   [![Captura-de-pantalla-2024-12-13-164307.png](https://i.postimg.cc/4x3K8hh7/Captura-de-pantalla-2024-12-13-164307.png)](https://postimg.cc/4mrNyyPs)
 
-  [![Captura-de-pantalla-2024-12-13-164307.png](https://i.postimg.cc/4x3K8hh7/Captura-de-pantalla-2024-12-13-164307.png)](https://postimg.cc/4mrNyyPs)
-
-  [![Captura-de-pantalla-2024-12-13-164307.png](https://i.postimg.cc/prqW8qC0/Captura-de-pantalla-2024-12-13-164307.png)](https://postimg.cc/JHHCC39J)
-
-* **Comandos**: Admite la ejecución de comandos separados por espacios (El comando `cd` funciona correctamente como funciona en bash, dejarlo sin argumentos ejecutará `cd /home/<user>`).
+* **Comandos**: Admite la ejecución de comandos separados por espacios o `;` (El comando `cd` funciona correctamente como funciona en bash, dejarlo sin argumentos ejecutará `cd /home/<user>`).
 
 * **Guiones**: Admite la ejecución de guiones.
 
 * **Redirección**: La entrada y salida de un comando se puede redirigir de la siguiente forma:
-    * sdfsd 
 
+    * `<` Usa el archvivo como entrada estándar.
+
+    * `>` Usa el archivo como salida estándar, creándolo si no existe y si existe lo trunca.
+
+    * `>>` Usa el archivo como salida estándar, creándolo si no existe y si existe escribe al final de él.
+
+    * `2>` Usa el archivo como salida de error estándar, creándolo si no existe y si existe lo trunca.
+
+* **Tubería**: Soporta una tubería usando el símbolo `|`, si se tratan de usar más saltará un error y solo se ejecutará el primer comando.
+
+* **Comentarios**: Soporta el uso de comentarios mediante el caracter `#`
