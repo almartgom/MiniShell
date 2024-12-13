@@ -26,6 +26,10 @@ g++ minishell.cpp -o minishell
 
   [![Captura-de-pantalla-2024-12-13-164307.png](https://i.postimg.cc/4x3K8hh7/Captura-de-pantalla-2024-12-13-164307.png)](https://postimg.cc/4mrNyyPs)
 
+  [![Captura-de-pantalla-2024-12-13-164307.png](https://i.postimg.cc/4x3K8hh7/Captura-de-pantalla-2024-12-13-164307.png)](https://postimg.cc/4mrNyyPs)
+
+  [![Captura-de-pantalla-2024-12-13-164307.png](https://i.postimg.cc/prqW8qC0/Captura-de-pantalla-2024-12-13-164307.png)](https://postimg.cc/JHHCC39J)
+
 * **Comandos**: Admite la ejecución de comandos separados por espacios (El comando `cd` funciona correctamente como funciona en bash, dejarlo sin argumentos ejecutará `cd /home/<user>`).
 
 * **Guiones**: Admite la ejecución de guiones.
