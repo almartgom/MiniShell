@@ -118,53 +118,70 @@ void ejecutar(char comando[])
     }
     if(nTuberias==1)
     {
-        int pp[2];
-        if(pipe(pp)==-1) // Crear la tubería
+        int pidTub = fork(); // Crea un proceso que creará la tubería para que la hereden los hijos
+
+        switch (pidTub)
         {
-            perror("Error al crear la tubería");
-            exit(1);
-        }
-
-        int pid1=fork(); // Crear hijo 1 (Ejecuta primer comando)
-
-        switch(pid1)
-        {
-            case -1: // Error al crear el hijo
-                perror("ERROR: no he podido crear un proceso con fork");
-                exit(2);
-            
-            case 0: // Primer hijo (Escribirá en la tubería)
-                close(pp[0]);
-                if(dup2(pp[1],1)==-1){
-                    perror("No se puede redireccionar stdout");
-                    exit(2);
-                }
-                close(pp[1]);
-                RedireccionarYEjecutar(comandoPipeado[0],false);
-                exit(0);
-        }
-
-        int pid2=fork(); // Crear hijo 2 (Ejecuta segundo comando)
-
-        switch(pid2)
-        {
-            case -1: // Error al crear el hijo
+            case -1:
                 perror("ERROR: no he podido crear un proceso con fork");
                 exit(2);
 
-            case 0: // Segundo hijo (Leerá de la tubería)
-                close(pp[1]);
-                if(dup2(pp[0],0)==-1){
-                    perror("No se puede redireccionar stdin");
-                    exit(2);
+            case 0:
+            { // Proceso creador de la tubería
+                int pp[2];
+                if(pipe(pp)==-1) // Crear la tubería
+                {
+                    perror("Error al crear la tubería");
+                    exit(1);
                 }
-                close(pp[0]);
-                RedireccionarYEjecutar(comandoPipeado[1],false);
-                exit(0);
-        }
 
-        close(pp[0]);close(pp[1]); // Cierra ambos extremos de la tubería del padre
-        wait(NULL);wait(NULL); // Espera a los hijos
+                int pid1=fork(); // Crear hijo 1 (Ejecuta primer comando)
+
+                switch(pid1)
+                {
+                    case -1: // Error al crear el hijo
+                        perror("ERROR: no he podido crear un proceso con fork");
+                        exit(2);
+
+                    case 0: // Primer hijo (Escribirá en la tubería)
+                        close(pp[0]);
+                        if(dup2(pp[1],1)==-1){
+                            perror("No se puede redireccionar stdout");
+                            exit(2);
+                        }
+                        close(pp[1]);
+                        RedireccionarYEjecutar(comandoPipeado[0],false);
+                        exit(0);
+                }
+
+                int pid2=fork(); // Crear hijo 2 (Ejecuta segundo comando)
+
+                switch(pid2)
+                {
+                    case -1: // Error al crear el hijo
+                        perror("ERROR: no he podido crear un proceso con fork");
+                        exit(2);
+
+                    case 0: // Segundo hijo (Leerá de la tubería)
+                        close(pp[1]);
+                        if(dup2(pp[0],0)==-1){
+                            perror("No se puede redireccionar stdin");
+                            exit(2);
+                        }
+                        close(pp[0]);
+                        RedireccionarYEjecutar(comandoPipeado[1],false);
+                        exit(0);
+                }
+
+                close(pp[0]);close(pp[1]); // Cierra ambos extremos de la tubería del padre
+                wait(NULL);wait(NULL); // Espera a los hijos
+                exit(0); // Termina el proceso creador de tubería
+                break;
+            }
+
+            default:
+                wait(NULL); // Espera a que termine el proceso creador de la tubería
+        }
     }
     else
     {
@@ -180,7 +197,7 @@ void RedireccionarYEjecutar(char* comando, bool sinPipe)
 
     char * f_in, * f_out, * f_err; // Declaración de los flujos de E/S 
     bool noVaciarOut = getredir(comando,f_in,f_out,f_err); // Separación del comando y los flujos de E/S y 
-                                                        // comprobación de si hay que modificar la salida
+                                                                               // comprobación de si hay que modificar la salida
 
     char **parts; 
     trocear_linea(comando, " \t", parts); // Troceamos el comando
@@ -320,7 +337,7 @@ void ejecutarVarios(char comandos[])
             if(comandos[i] == '#') comandos[i] = '\0';
         }
     char **comando;
-    int n = trocear_linea(comandos, ";", comando);
+    int n = trocear_linea(comandos, ";", comando); // Separa en distintos comandos
     for (int i = 0; i < n; i++)
     {
         ejecutar(comando[i]);
