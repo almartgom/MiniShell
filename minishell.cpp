@@ -110,10 +110,6 @@ int main(int argc, char *argv[])
 
 void ejecutar(char comando[])
 { // Ejecuta un comando
-    for(int i=0; comando[i]!='\0'; i++) // Busca si hay comentarios y los quita
-    {
-        if(comando[i] == '#') comando[i] = '\0';
-    }
     char** comandoPipeado;
     int nTuberias = trocear_linea(comando,"|",comandoPipeado);
     nTuberias --;
@@ -319,6 +315,10 @@ void read(char str[], int tam)
 
 void ejecutarVarios(char comandos[])
 { // Si se encuentra ";" ejecuta individualmente cada comando
+    for(int i=0; comandos[i]!='\0'; i++) // Busca si hay comentarios y los quita
+        {
+            if(comandos[i] == '#') comandos[i] = '\0';
+        }
     char **comando;
     int n = trocear_linea(comandos, ";", comando);
     for (int i = 0; i < n; i++)
