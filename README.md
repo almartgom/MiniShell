@@ -43,3 +43,37 @@ g++ minishell.cpp -o minishell
 * **Tubería**: Soporta una tubería usando el símbolo `|`, si se tratan de usar más saltará un error y solo se ejecutará el primer comando.
 
 * **Comentarios**: Soporta el uso de comentarios mediante el caracter `#`
+
+## Ejemplos de uso
+* Ejecutar un comando simple:
+```
+ls -l
+```
+* Ejecutar múltiples comandos separados por `;`:
+```
+ls -l; pwd
+```
+* Redirigir la salida de un comando a un archivo:
+```
+ls -l > output.txt
+```
+* Usar tuberías para conectar comandos:
+```
+ls -l | grep minishell
+```
+* Redirigir la salida de error a un archivo:
+```
+ls -l nonexistentfile 2> error.txt
+```
+* Añadir la salida de un comando a un archivo existente:
+```
+echo Ejemplo >> output.txt
+```
+* Redirigir la entrada de un comando desde un archivo:
+```
+sort < unsorted.txt
+```
+
+## Requisitos previos
+* Un compilador de C++ (por ejemplo, `g++`).
+
